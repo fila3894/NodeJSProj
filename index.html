@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>동서대학교 음식점 가이드</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+  <script type="text/javascript" src="./js2/jquery-1.11.3.min.js"></script> 
+  <script type="text/javascript" src="./js2/jQueryRotateCompressed.js"></script>
+
+  <style>
+  
+    #iimage{position: relative; width: 50%; left: 25%;}
+    #n_id{position:relative; width: 2% ; margin-top: -45%; left: -1.2%;}
+      
+    </style>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+ 
+  <!-- 페이지[1] 메인 -->
+  <section id="hero">
+    <div class="hero-container">
+      <a href="/" class="hero-logo" data-aos="zoom-in"><img src="assets/img/main_logo.png" alt="" width="300"
+        height="300"></a>
+      <h1 data-aos="zoom-in">뭐물래</h1>
+      <h2 data-aos="fade-up">#선택장애 #여기처음</h2>
+      <a data-aos="fade-up" href="#random" class="btn-get-started scrollto">그럼, 이건어때?</a>
+    </div>
+  </section>
+
+  <!-- 메인 페이지 상단 보기 메뉴 -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container">
+      <div class="logo d-block d-lg-none">
+        <a href="/"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
+      </div>
+      <nav class="nav-menu d-none d-lg-block">
+        <ul class="nav-inner">
+          <li class="active"><a href="">메인</a></li>
+          <li class="active"><a href="#random">돌림판</a></li>
+          <li class="nav-logo"><a href=""><img src="assets/img/logo.png" alt="" class="img-fluid"></a></li>
+          <li><a href="#kakao">디스코드 챗봇</a></li>
+          <li><a href="#portfolio">음식</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 페이지[2] 돌림판 -->
+  <main id="main">
+    <section id="random" class="about">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>돌려돌려 돌림판 !!</h2>
+          <p>오늘은 운명에 맡기겠다.</p>
+          <input type='button' value='시작' id='start_btn'></input>
+        </div>
+        <div style="align-items: center; max-width:100%; height:auto;">
+          <img src="img2/roulett1.png" id="iimage" >
+          <img src="img2/niddle.png" id="n_id">
+         
+        </div>
+          <div id="result_id"></div>
+          <div id="result_id2"></div>
+          <div id="result_id3"></div>
+            <script>
+             window.onload = function(){
+              var pArr = ["양식","중식","한식","일식","분식","학식","일식","중식","한식","양식"];        
+                $('#start_btn').click(function(){
+                  rotation();
+                });
+                function rotation(){
+                  $("#iimage").rotate({
+                    angle:0, 
+                    animateTo:360 * 5 + randomize(0, 160),
+                    center: ["50%", "50%"],
+                    easing: $.easing.easeInOutElastic,
+                    callback: function(){ 
+                          var n = $(this).getRotateAngle();
+                          endAnimate(n);
+                        },
+                    duration:5000
+                  });
+                }
+              
+                function endAnimate($n){
+                  var n = $n;
+                  var real_angle = n%360 +1;
+                  var part = Math.floor(real_angle/36);
+                  if(part < 1){
+                    $('#result_id3').html("<p>무슨 종류 먹지 :" + "<a href='#portfolio'>" + pArr[0] + "</a>" + "</p>");
+                    return;
+                  }
+              
+                  if(part >= 9){
+                    $('#result_id3').html("<p>무슨 종류 먹지 :" + "<a href='#portfolio'>" + pArr[pArr.length-1] + "</a>" + "</p>");
+                    return;
+                  }
+                  $('#result_id3').html("<p>무슨 종류 먹지 :" + "<a href='#portfolio'>" + pArr[part] + "</a>" + "</p>");
+                }
+              
+                function randomize($min, $max){
+                  return Math.floor(Math.random() * ($max - $min + 1)) + $min;
+                }
+              };
+             </script>
+      </div>
+    </section>
+
+    <!-- 페이지[3] 카카오 챗봇 -->
+    <section id="kakao" class="services">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>디스코드 매크로 AI 봇</h2>
+          <p>음식점 어디가 괜찮은지 모르겠다고? 그럼 내가 도와줄게 !!</p>
+          <a href="https://discord.com/channels/781454298642645022/781454299099430945" > 시작하기</a>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <div class="icon-box mt-5 mt-lg-0" data-aos="fade-up">
+              <img src="img2/1.jpg">
+            </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("img2/kakao_chat.jpg");' data-aos="fade-left" data-aos-delay="100"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 사용법 -->
+    <section id="featured" class="featured">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <figure>
+                  <img src="assets/img/help1.jpg" alt="" class="img-fluid">
+                </figure>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <figure>
+                  <img src="assets/img/help2.jpg" alt="" class="img-fluid">
+                </figure>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <figure>
+                  <img src="assets/img/help3.jpg" alt="" class="img-fluid">
+                </figure>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <figure>
+                  <img src="assets/img/help4.jpg" alt="" class="img-fluid">
+                </figure>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-toggle="tab" href="#tab-1">
+                  <h4>1. 명령어 확인</h4>
+                  <p>궁금한 사항은 명령어를 통해 확인해주세요.</p>
+                </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" data-toggle="tab" href="#tab-2">
+                  <h4>2. 물어보기</h4>
+                  <p>뭐물래에게 해당 음식점을 물어보세요.</p>
+                </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" data-toggle="tab" href="#tab-3">
+                  <h4>3. 링크 확인</h4>
+                  <p>파란색 글씨를 터치하면 해당 음식점의 링크가 공유됩니다.</p>
+                </a>
+              </li>
+              <li class="nav-item mt-2">
+                <a class="nav-link" data-toggle="tab" href="#tab-4">
+                  <h4>4. 사이트 이동</h4>
+                  <p>해당 음식점의 링크를 통해 더 많은 정보를 확인할 수 있습니다.</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  
+    <!-- 음식 리스트 -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>음식 종류</h2>
+          <p>자신의 기호에 맞는 음식을 골라보세요 !</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">전체</li>
+              <li data-filter=".filter-ko">한식</li>
+              <li data-filter=".filter-ch">중식</li>
+              <li data-filter=".filter-la">양식</li>
+              <li data-filter=".filter-ja">일식</li>
+              <li data-filter=".filter-i">분식</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-ko">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/ko_food1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>한식</h4>
+                
+                <div class="portfolio-links">
+                  <a href="/ko1" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-la">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/food1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>양식</h4>
+               
+                <div class="portfolio-links">
+                  <a href="/la1" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-ja">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/ja_food1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>일식</h4>
+                <div class="portfolio-links">
+                  <a href="/ja1" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-ch">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/ch_food1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>중식</h4>
+                <div class="portfolio-links">
+                  <a href="/ch1" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-i">
+            <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/i_food1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info" id="snack">
+                <h4>분식</h4>
+                <div class="portfolio-links">
+                  <a href="/i1" title="More Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>    
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 소개 -->
+    <section id="clients" class="clients">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-2 col-md-4 col-6" data-aos="zoom-in">
+            <img src="assets/img/clients/한식.png" width="5.55px"  class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6" data-aos="zoom-in" data-aos-delay="100">
+            <img src="assets/img/clients/중식.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6" data-aos="zoom-in" data-aos-delay="200">
+            <img src="assets/img/clients/양식.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6" data-aos="zoom-in" data-aos-delay="300">
+            <img src="assets/img/clients/일식.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6" data-aos="zoom-in" data-aos-delay="400">
+            <img src="assets/img/clients/분식.png" class="img-fluid" alt="">
+          </div>
+
+          
+
+      </div>
+    </section>
+  <!--맨 밑 추가 정보 -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+            <a href="#header" class="scrollto footer-logo"><img src="assets/img/main_logo.png" alt=""></a>
+            <h3>뭐물래</h3>
+            <p>몰라? 뭐물래 </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom clearfix">
+      <div class="copyright">
+        &copy; 동서대학교 <strong><span>음식점</span></strong> 가이드
+      </div>
+      <div class="credits">
+        자세한 정보 <a href="https://www.dongseo.ac.kr/kr/">Dongseo</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  
+  <script src="js2/jquery-1.11.3.min.js"></script>
+  <script src="js2/jQueryRotate.js"></script>
+  <script src="js2/jQueryRotateCompressed.js"></script>
+  
+  
+</body>
+
+</html>

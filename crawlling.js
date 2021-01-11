@@ -14,6 +14,7 @@ fs.open(file, 'w', function(err, fd){
 	if(err) throw err;
 	console.log('file open complete');
 });
+
 var options = {
     host: host,
     port: port,
@@ -21,6 +22,7 @@ var options = {
     method: 'GET',
     headers: {"X-Naver-Client-Id" : client_id, "X-Naver-Client-Secret" : client_secret}
 };
+
 var req = https.request(options, function(res) {
     res.setEncoding('utf-8');
     res.on('data', function(chunk){

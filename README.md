@@ -1,4 +1,4 @@
-:school:학교 주변 식당:fork_and_knife: 추천 웹사이트
+:school:학교 주변 식당:fork_and_knife:  웹사이트
 ===
 
 요약:stars:
